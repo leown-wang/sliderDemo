@@ -1,0 +1,17 @@
+body{
+    box-sizing: border-box;
+}
+img{
+    width: 222px;
+    height: 222px;
+}
+.images{
+    display: flex;
+    align-items: flex-start;
+    border: 1px solid red;
+}
+.window{
+    border: 1px solid black;
+    width: 222px;
+    overflow: hidden;
+}
