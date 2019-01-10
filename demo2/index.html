@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport"
+              content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>轮播</title>
+        <script src="//code.jquery.com/jquery-2.1.1.min.js"></script>
+        <link rel="stylesheet" href="css/style.css">
+
+    </head>
+    <body>
+        <div class="window">
+            <div class="images" id="images">
+                <img src="image/1.png" height="222" width="222"/>
+                <img src="image/2.png" height="222" width="222"/>
+                <img src="image/3.png" height="222" width="222"/>
+                <img src="image/2.png" height="222" width="222"/>
+            </div>
+        </div>
+        <div id="buttons">
+            <button>1</button>
+            <button>2</button>
+            <button>3</button>
+            <button>4</button>
+        </div>
+    </body>
+</html>
+<script>
+    function activeButton($button) {
+        $button.addClass('highlight').siblings('.highlight').removeClass('highlight')
+    }
+    function playSilde(index) {
+        allbuttons.eq(index).trigger('click')
+    }
+    function setTimer() {
+        return setInterval(()=>{
+            n++
+            playSilde(n%(allbuttons.length))
+        },1000)
+    }
+
+    var n =1
+    var allbuttons = $('#buttons > button')
+    var timeId = setTimer()
+
+    for (let i = 0;i < allbuttons.length;i++){
+        $(allbuttons[i]).on('click',function (x) {
+            var index = $(x.currentTarget).index()
+            $('#images').css({
+                transform:'translate('+ index*-222 + 'px'
+            })
+            n = index
+            activeButton(allbuttons.eq(n))
+        })
+    }
+    $('.window').on('mouseenter',function () {
+        window.clearInterval(timeId)
+    })
+    $('.window').on('mouseleave',function () {
+        timeId = setTimer()
+    })
+</script>
