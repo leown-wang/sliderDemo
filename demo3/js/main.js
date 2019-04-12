@@ -11,7 +11,7 @@ setInterval(()=>{
         })
     $(`.images > img:nth-child(${f(n+1)})`).addClass('current').removeClass('enter')
     n++
-},1000)
+},3000)
 
 function f(n) {
     if (n>5) {
